@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Ini Peta Interaktif</title>
+	<title>ToyaMaps UGM</title>
 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
 		integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 	<style>
@@ -24,12 +24,12 @@
 	<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
 		integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 	<script>
-		// yogyakarta
-		var map = L.map('map').setView([-7.797068, 110.370529], 13);
+		// ugm
+		var map = L.map('map').setView([-7.77017, 110.37780], 13);
 
 		// basemap
 		var basemap = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-			maxZoom: 18
+			maxZoom: 20
 		}).addTo(map);
 
 		// Export Button
@@ -47,7 +47,7 @@
 			var point = L.geoJson(null, {
 				onEachFeature: function (feature, layer) {
 					var popupContent = "<h4>" + feature.properties.nama + "</h4>" +
-						"<p>" + feature.properties.deskripsi + "</p>";
+						"<p>" + feature.properties.jenis + "</p>";
 					layer.on({
 						click: function (e) {
 							point.bindPopup(popupContent);
@@ -55,7 +55,7 @@
 					});
 				},
 			});
-			$.getJSON("https://script.google.com/macros/s/AKfycbzIRg-XOKc2lNXvapRB0eJc2dsNOG00UP5LGkzPF54_A8BWGVrg3kWUzQ7CAc5J-7lR/exec", function (data) {
+			$.getJSON("https://script.google.com/macros/s/AKfycbxGOIwvNDWnIwRhPlZbBxe3AHktm8nYDdP_esLTToyyRZPOEe4PD3xz52yAFsv-xhFO-Q/exec", function (data) {
 				point.addData(data);
 				map.addLayer(point);
 				map.fitBounds(point.getBounds());
